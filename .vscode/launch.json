@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "configurtions": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Progrma",
+      "program": "${workspaceForlder}/index.js"
+    }
+  ]
+}
