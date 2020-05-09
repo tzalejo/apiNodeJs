@@ -1,11 +1,18 @@
 const { asClass, createContainer, asFunction, asValue } = require('awilix');
 const StartUp = require('./startup');
 const Server = require('./server');
-const UserController  = require('./../api/controllers/user.controller');
 const Routes = require('./../api/routes');
-const container = createContainer();
-const config = require('./../config/environments');
+
 const UserRoutes = require('./../api/routes/user.routes');
+const { UserController }  = require('./../api/controllers');
+const { UserRepository }  = require('./../dal/repositories');
+const { UserService } = require('./../services');
+
+const config = require('./../config/environments');
+const container = createContainer();
+
+const db = require('./../dal/entities');
+
 
 container
   .register({
@@ -13,16 +20,23 @@ container
     server: asClass(Server).singleton()
   })
   .register({
-    UserController: asClass(UserController).singleton()
-  })
-  .register({
-    router: asFunction(Routes).singleton()
-  })
-  .register({
-    config: asValue(config)
+    UserController: asClass(UserController).singleton(),
   })
   .register({
     UserRoutes: asFunction(UserRoutes).singleton()
+  })
+  .register({
+    router: asFunction(Routes).singleton(),
+    config: asValue(config)
+  })
+  .register({
+    db: asValue(db)
+  })
+  .register({
+    UserService: asFunction(UserService).singleton()
+  })
+  .register({
+    UserRepository: asFunction(UserRepository).singleton()
   });
 
 module.exports = container;
