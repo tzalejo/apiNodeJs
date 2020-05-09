@@ -23,9 +23,6 @@ container
     UserController: asClass(UserController).singleton(),
   })
   .register({
-    UserRoutes: asFunction(UserRoutes).singleton()
-  })
-  .register({
     router: asFunction(Routes).singleton(),
     config: asValue(config)
   })
@@ -33,10 +30,13 @@ container
     db: asValue(db)
   })
   .register({
-    UserService: asFunction(UserService).singleton()
+    UserRoutes: asFunction(UserRoutes).singleton()
   })
   .register({
-    UserRepository: asFunction(UserRepository).singleton()
+    UserService: asClass(UserService).singleton()
+  })
+  .register({
+    UserRepository: asClass(UserRepository).singleton()
   });
 
 module.exports = container;

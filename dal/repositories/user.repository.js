@@ -2,8 +2,8 @@ class UserRepository {
 
   constructor({db}){
     this._db = db;
-
   }
+  
   getUsers(){
     return this._db.users.findAll();
   }

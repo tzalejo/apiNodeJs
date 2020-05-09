@@ -1,11 +1,10 @@
 class UserController {
-  constructor({UserController}){
-    this._userController = UserController;
+  constructor({ UserService }){
+    this._userService = UserService;
   }
   
   async getUsers(req, res){
-    const users = await this._userController.getUsers();
-    
+    const users = await this._userService.getUsers();
     return res.send({
       error: false, 
       payload: users
@@ -15,7 +14,7 @@ class UserController {
 
   async createUser(req, res) {
     const { body } = req;
-    const createUser = await tihs._userController.createUser(body)
+    const createUser = await this._userService.createUser(body)
     return res.send({
       error: false,
       payload: createUser
