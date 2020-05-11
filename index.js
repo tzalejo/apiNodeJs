@@ -6,7 +6,7 @@ const db= container.resolve('db');
 
 application
   .start()
-  .then(async ()=>{
+  .then(async () => {
     await db.sequelize.sync();
   })
   .catch(err => {
